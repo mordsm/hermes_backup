@@ -1,0 +1,32 @@
+[project]
+name = "task-reminder"
+version = "0.1.0"
+description = "Personal task orchestration and reminder system"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "typer>=0.12",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.2",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "python-dateutil>=2.9",
+    "google-api-python-client>=2.140",
+    "google-auth-oauthlib>=1.2",
+    "requests>=2.32",
+    "python-telegram-bot>=21.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[project.scripts]
+taskreminder = "task_reminder.app.cli:app"
+
+[tool.ruff]
+line-length = 100

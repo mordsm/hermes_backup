@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: task_reminder_postgres
+    environment:
+      POSTGRES_DB: taskreminder
+      POSTGRES_USER: taskreminder
+      POSTGRES_PASSWORD: taskreminder_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - task_reminder_pgdata:/var/lib/postgresql/data
+      - ./DATABASE_SCHEMA.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+
+volumes:
+  task_reminder_pgdata:
