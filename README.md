@@ -1,63 +1,37 @@
-# Personal Task Reminder System
+# hermes_backup
 
-A personal task orchestration system using:
+Backup repository for Hermes-generated artifacts, session snapshots, and curated source exports.
 
-- PostgreSQL as the operational source of truth
-- Google Calendar for fixed-time events
-- Google Tasks for personal tasks
-- Trello for backlog/projects/kanban
-- Telegram Bot for actionable alerts
-- Windows Task Scheduler as the periodic trigger
+## What goes here
+- Report outputs generated during Hermes sessions
+- Curated activity summaries
+- PDF deliverables and reusable templates
+- Source snapshots of key projects/agents
 
-The first MVP is intentionally conservative:
-- Read from Google Calendar, Google Tasks, Trello
-- Normalize into PostgreSQL
-- Generate task instances
-- Detect due/overdue/stale backlog items
-- Send Telegram alerts
-- Allow local completion/snooze/skip
-- Write completion back only to the original source where safe
+## Latest snapshot
+- Date: 2026-06-18
+- GitHub branch: `master`
+- Latest backup commit: `710e2b0`
 
-## Recommended stack
+## Life agent / kanban manager
+The life-management agent lives in the backed-up source tree here:
 
-- Python 3.12+
-- PostgreSQL 16+
-- SQLAlchemy 2.x
-- Alembic
-- FastAPI
-- Typer CLI
-- python-dateutil
-- google-api-python-client
-- py-trello or direct Trello REST
-- python-telegram-bot
+- `task_reminder/app/life_agent/cli.py`
+- `task_reminder/app/life_agent/orchestrator.py`
+- `task_reminder/app/life_agent/planning.py`
+- `task_reminder/app/life_agent/reporting.py`
+- `task_reminder/app/life_agent/models.py`
 
-## Main commands to implement
+Related wiring:
+- `task_reminder/app/cli.py` → `life ...`
+- `task_reminder/app/financial_agent/cli.py` → routes follow-ups into `life_agent`
 
-```bash
-taskreminder sync
-taskreminder generate-instances
-taskreminder alert
-taskreminder run-once
-taskreminder mark-done <instance-id>
-taskreminder snooze <instance-id> --minutes 60
-taskreminder skip <instance-id>
-taskreminder serve
-```
+## Backup structure
+- `docs/` → human-readable specs and references
+- `activity/` → dated session summaries
+- `source_snapshots/` → preserved source exports and manifests
+- `task_reminder/` → the backed-up application source tree
 
-`run-once` is the command Windows Task Scheduler should invoke hourly.
-
-## MVP boundary
-
-Do not implement every integration perfectly in the first iteration.
-
-Priority order:
-
-1. PostgreSQL schema + domain model
-2. Manual/local tasks
-3. Recurring daily tasks
-4. Telegram alerts
-5. Google Calendar read-only sync
-6. Google Tasks read/write
-7. Trello read/write
-8. Dashboard API
-9. Google Keep inbox only, optional and later
+## Notes
+- Sensitive data should be redacted before commit.
+- This repo is meant to hold selected artifacts, not raw secrets.
