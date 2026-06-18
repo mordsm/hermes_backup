@@ -11,7 +11,7 @@ Backup repository for Hermes-generated artifacts, session snapshots, and curated
 ## Latest snapshot
 - Date: 2026-06-18
 - GitHub branch: `master`
-- Latest backup commit: `710e2b0`
+- Latest backup commit: `da60d22`
 
 ## Life agent / kanban manager
 The life-management agent lives in the backed-up source tree here:
